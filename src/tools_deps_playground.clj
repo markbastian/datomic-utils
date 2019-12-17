@@ -5,4 +5,5 @@
 (defn -main
   [& args]
   (let [{:keys [out err exit]} (sh/sh "ls" "-al")]
-    (print out)))
+    (println out)
+    (System/exit exit)))
