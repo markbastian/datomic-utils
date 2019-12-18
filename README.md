@@ -9,6 +9,7 @@ Basically, the formula is:
 To use these elsewhere:
 1. Commit to git.
 2. Add an alias to your deps.edn file. The alias can be whatever you want. Declare your dependency with the `:deps` key and specify the actual invocations with `:main-opts`.
+3. Invoke the alias as `clj -A:alias`.
 
 You can now invoke as:
  * `clj -m ls`
