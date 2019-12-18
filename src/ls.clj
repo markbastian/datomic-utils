@@ -1,4 +1,4 @@
-(ns tools-deps-playground
+(ns ls
   (:require
     [clojure.java.shell :as sh]))
 
