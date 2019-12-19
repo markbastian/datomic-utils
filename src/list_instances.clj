@@ -1,16 +1,21 @@
 (ns list-instances
-  (:require
-    [clojure.java.shell :as sh]))
+  (:require [cognitect.aws.client.api :as aws]))
 
-(defn -main
-  [& args]
-  (let [{:keys [out err exit]}
-        (sh/sh
-          "aws"
-          "ec2" "describe-instances"
-          "--filters" "Name=tag-key,Values=datomic:tx-group"
-          "Name=instance-state-name,Values=running"
-          "--query" "Reservations[*].Instances[*].[Tags[?Key==`datomic:system`].Value]"
-          "--output" "text")]
-    (println out)
-    (System/exit exit)))
+(defonce ec2 (aws/client {:api :ec2}))
+
+(def query {:Filters [{:Name "tag-key" :Values ["datomic:tx-group"]}
+                      {:Name "instance-state-name" :Values ["running"]}]})
+
+(defn instances []
+  (let [{:keys [Reservations]} (aws/invoke ec2 {:op :DescribeInstances :request query})]
+    (for [{:keys [Instances]} Reservations
+          {:keys [Tags]} Instances
+          {:keys [Key Value]} Tags
+          :when (= Key "datomic:system")]
+      Value)))
+
+(defn -main [& args]
+  (do
+    (doseq [instance (instances)]
+      (println instance))
+    (System/exit 0)))

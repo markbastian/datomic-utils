@@ -3,9 +3,12 @@
              com.cognitect/anomalies                     {:mvn/version "0.1.12"}
              com.datomic/client-cloud                    {:mvn/version "0.8.81"}
              com.datomic/ion                             {:mvn/version "0.9.35"}
-             com.cognitect.aws/dynamodb                  {:mvn/version "776.2.580.0"}
-             ;
+             ;These two are needed for all cognitect stuff
              com.cognitect.aws/api                       {:mvn/version "0.8.408"}
+             com.cognitect.aws/endpoints                 {:mvn/version "1.1.11.692"}
+             com.cognitect.aws/dynamodb                  {:mvn/version "776.2.580.0"}
+             com.cognitect.aws/cloudformation            {:mvn/version "773.2.575.0"}
+             com.cognitect.aws/ec2                       {:mvn/version "783.2.588.0"}
              ;Add embedded repl support
              nrepl                                       {:mvn/version "0.6.0"}
              ;Make life easier with json
