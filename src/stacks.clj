@@ -19,6 +19,7 @@
      :request {:Parameters   [{:ParameterKey "SystemName" :ParameterValue system-name}
                               {:ParameterKey "ApplicationName" :ParameterValue system-name}
                               {:ParameterKey "KeyName" :ParameterValue key-name}]
+               ;CAPABILITY_IAM or is it this
                :Capabilities ["CAPABILITY_NAMED_IAM"]
                :StackName    system-name
                :TemplateURL  "https://s3.amazonaws.com/datomic-cloud-1/cft/569-8835/datomic-solo-compute-569-8835.json"}}))
