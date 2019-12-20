@@ -9,6 +9,10 @@
              com.cognitect.aws/dynamodb                  {:mvn/version "776.2.580.0"}
              com.cognitect.aws/cloudformation            {:mvn/version "773.2.575.0"}
              com.cognitect.aws/ec2                       {:mvn/version "783.2.588.0"}
+             com.cognitect.aws/iam                       {:mvn/version "773.2.575.0"}
+             com.cognitect.aws/application-autoscaling   {:mvn/version "780.2.584.0"}
+             com.cognitect.aws/autoscaling               {:mvn/version "773.2.575.0"}
+             com.cognitect.aws/autoscaling-plans         {:mvn/version "773.2.578.0"}
              ;Add embedded repl support
              nrepl                                       {:mvn/version "0.6.0"}
              ;Make life easier with json
@@ -23,7 +27,7 @@
  :aliases   {:ion-dev        {:deps      {com.datomic/ion-dev {:mvn/version "0.9.247"}}
                               :main-opts ["-m" "datomic.ion.dev"]}
              ;Not there yet
-             :delete-storage {:deps {compute/datomic-cloud-tools {:git/url "https://github.com/ComputeSoftware/datomic-cloud-tools.git"
-                                                                  :sha     "d129439d84987b46928d7b93d1db6a280e694834"}}
+             :delete-storage {:deps      {compute/datomic-cloud-tools {:git/url "https://github.com/ComputeSoftware/datomic-cloud-tools.git"
+                                                                       :sha     "d129439d84987b46928d7b93d1db6a280e694834"}}
                               :main-opts ["-m" "dc-tools" "\\$@"]}
              }}
