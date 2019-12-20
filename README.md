@@ -1,16 +1,9 @@
-# All about understanding tools deps
-The [Deps and CLI Guide](https://clojure.org/guides/deps_and_cli) is actually pretty clear.
+# Useful tools-deps commands for Datomic
+Datomic is super awesome, but the tooling around it could be improved. This project adds some useful commands.
 
-Basically, the formula is:
-1. Create a top level ns (e.g. `foo`).
-2. In that ns, create a standard main function. Note that it will only terminate if you explicitly call `(System/exit)` yourself.
-3. Invoke the application as `clj -m name-of-ns`, e.g. `clj -m foo`.
+## About
+These utilities make use of David Chelimsky's awesome [Cognitect AWS API](https://github.com/cognitect-labs/aws-api) so that you do not need to have the aws cli tools installed. It's all Clojure!
 
-To use these elsewhere:
-1. Commit to git.
-2. Add an alias to your deps.edn file. The alias can be whatever you want. Declare your dependency with the `:deps` key and specify the actual invocations with `:main-opts`.
-3. Invoke the alias as `clj -A:alias`.
-
-You can now invoke as:
- * `clj -m ls`
- * `clj -m list-instances`
+## Commands
+ * `clj -m list-instances`: List runing Datomic systems.
+ * `clj -m shutdown-system --system $YOUR_SYSTEM_NAME_HERE`: Set all autoscaling values (min, max, desired) to 0 for a named system.

@@ -1,5 +1,6 @@
 {:paths     ["src" "resources"]
  :deps      {org.clojure/clojure                         {:mvn/version "1.10.1"}
+             org.clojure/tools.cli                       {:mvn/version "0.4.2"}
              com.cognitect/anomalies                     {:mvn/version "0.1.12"}
              com.datomic/client-cloud                    {:mvn/version "0.8.81"}
              com.datomic/ion                             {:mvn/version "0.9.35"}
