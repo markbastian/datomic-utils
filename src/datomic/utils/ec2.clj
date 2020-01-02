@@ -39,17 +39,14 @@
       first)))
 
 (defn make-system-replable [system-name]
-  (let [{[f :as IpPermissions] :IpPermissions :keys [GroupId]} (security-group-details system-name)
-        mods (-> f
+  (let [{:keys [GroupId IpPermissions]} (security-group-details system-name)
+        mods (-> IpPermissions
+                 first
                  (update :IpRanges (fn [s] (mapv #(update % :Description (fn [s] (cs/replace s "CIDRBlock" "REPL port"))) s)))
                  (assoc :FromPort 3001)
                  (assoc :ToPort 3001))]
-    #_(aws/invoke
+    (aws/invoke
         ec2
-        {:op      :UpdateSecurityGroupRuleDescriptionsIngress
+        {:op      :AuthorizeSecurityGroupIngress
          :request {:GroupId       GroupId
-                   ;:DryRun true
-                   :IpPermissions [f mods]}})
-    {:GroupId       GroupId
-     ;:DryRun true
-     :IpPermissions [f mods]}))
+                   :IpPermissions [mods]}})))
