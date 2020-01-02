@@ -8,7 +8,7 @@
 (defn describe-autoscaling-groups [system-name]
   (let [{:keys [AutoScalingGroups]} (aws/invoke autoscaling {:op :DescribeAutoScalingGroups})]
     (for [{:keys [Tags] :as AutoScalingGroup} AutoScalingGroups
-          {:keys [Key Value ResourceType]} Tags
+          {:keys [Key Value]} Tags
           :when (and (= Key "datomic:system") (= Value system-name))]
       AutoScalingGroup)))
 

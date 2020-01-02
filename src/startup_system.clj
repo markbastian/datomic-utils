@@ -1,4 +1,4 @@
-(ns shutdown-system
+(ns startup-system
   (:require [datomic.utils.ec2 :as ec2]
             [datomic.utils.autoscaling :as autoscaling]
             [clojure.string :as cs]
@@ -10,17 +10,18 @@
 
 (defn -main [& args]
   (let [{{:keys [system help]} :options} (parse-opts args cli-options)
+        asgs (seq (autoscaling/describe-autoscaling-groups system))
         systems (set (ec2/instances))]
     (cond
-      (systems system)
+      asgs
       (do
-        (println (format "Shutting down system named %s." system))
-        (autoscaling/shutdown-datomic-system system))
+        (println (format "Starting system named %s." system))
+        (autoscaling/startup-datomic-system system))
       help
-      (println "clj -m shutdown-system -s $system-name")
+      (println "clj -m startup-system -s $system-name")
       :else
       (println (format
-                 "No running Datomic system named %s. Available systems are: %s."
+                 "No Datomic system named %s. Available systems are: %s."
                  system
                  (cs/join ", " (sort systems)))))
     (System/exit 0)))
