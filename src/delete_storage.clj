@@ -1,0 +1,1 @@
+(ns delete-storage)

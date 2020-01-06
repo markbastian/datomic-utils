@@ -14,6 +14,7 @@
              com.cognitect.aws/application-autoscaling   {:mvn/version "780.2.584.0"}
              com.cognitect.aws/autoscaling               {:mvn/version "773.2.575.0"}
              com.cognitect.aws/autoscaling-plans         {:mvn/version "773.2.578.0"}
+             com.cognitect.aws/lambda                    {:mvn/version "780.2.584.0"}
              ;Add embedded repl support
              nrepl                                       {:mvn/version "0.6.0"}
              ;Make life easier with json
